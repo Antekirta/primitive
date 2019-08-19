@@ -1,0 +1,17 @@
+.person {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 10px;
+}
+
+.person__item {
+    margin-right: 15px;
+}
+
+.person__name {
+    font-weight: 600;
+}
+
+.person__assign-button {
+    position: relative;
+}

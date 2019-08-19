@@ -1,0 +1,18 @@
+.ui-button {
+    outline: none;
+    border: solid 1px #222;
+    padding: 2px 5px;
+    border-radius: 2px;
+    background: none;
+    cursor: pointer;
+    letter-spacing: 0.05rem;
+}
+
+.ui-button:hover {
+    background-color: #222;
+    color: #fff;
+}
+
+.ui-button--bold {
+    font-weight: 900;
+}

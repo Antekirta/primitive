@@ -1,11 +1,22 @@
 import React from "react";
+import './ui-button.css'
 
-export default class UIButton extends React.Component {
-    render() {
-        return (
-            <button className="ui-button">
-                {this.props.children}
-            </button>
-        )
-    }
+interface UIButtonProps {
+    className?: string
+    bold?: boolean
 }
+
+
+const UIButton: React.FC<UIButtonProps> = (props) => {
+    let UIButtonClassNames = `ui-button ${props.className}`
+
+    UIButtonClassNames += props.bold ? ` ui-button--bold` : ''
+
+    return (
+        <button className={UIButtonClassNames}>
+            {props.children}
+        </button>
+    )
+}
+
+export default UIButton 

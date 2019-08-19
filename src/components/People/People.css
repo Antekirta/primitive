@@ -1,0 +1,8 @@
+.people__list {
+    margin-top: 10px;
+    list-style-type: none;
+}
+
+.people__item {
+    margin-bottom: 5px;
+}
