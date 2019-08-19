@@ -1,0 +1,51 @@
+.local-area {
+    display: grid;
+    height: 100vh;
+    grid-template-areas: 
+    "people forest forest meadow  meadow "
+    "cave river river mountain mountain"
+    "surroundings events events events events";
+  }
+  
+  .local-area__cell {
+    padding: 10px 15px; 
+    border: solid 1px #222;
+  }
+  
+  .local-area__cell-header {
+    display: inline-block;
+    padding: 0 5px;
+    border-bottom: solid 2px #222;
+  }
+  
+  .local-area__people {
+    grid-area: people;
+  }
+  
+  .local-area__cave {
+    grid-area: cave;
+  }
+  
+  .local-area__surroundings {
+    grid-area: surroundings;
+  }
+  
+  .local-area__forest {
+    grid-area: forest;
+  }
+  
+  .local-area__meadow {
+    grid-area: meadow;
+  }
+  
+  .local-area__river {
+    grid-area: river;
+  }
+  
+  .local-area__mountain {
+    grid-area: mountain;
+  }
+  
+  .local-area__events {
+    grid-area: events;
+  }
