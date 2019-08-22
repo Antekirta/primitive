@@ -1,8 +1,8 @@
-import Tree from "./Tree";
+import Tree, { TREES } from "./Tree";
 
 class ForestFactory {
   static provideTree() {
-    return new Tree();
+    return Tree.createTree(TREES.birch);
   }
 }
 
