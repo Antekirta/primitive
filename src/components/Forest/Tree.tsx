@@ -34,7 +34,7 @@ class Tree {
   burningTemparature: number = 0;
   humidity: number = 0;
 
-  static createTree(name: TREES) {
+  static getTree(name: TREES) {
     let density = 0,
       burningTemperature = 0,
       humidity = 0;

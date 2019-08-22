@@ -2,7 +2,7 @@ import Tree, { TREES } from "./Tree";
 
 class ForestFactory {
   static provideTree() {
-    return Tree.createTree(TREES.birch);
+    return Tree.getTree(TREES.birch);
   }
 }
 
