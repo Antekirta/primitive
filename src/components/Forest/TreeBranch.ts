@@ -1,15 +1,18 @@
+import { eventBus } from "./../../utils/event-bus";
+import { CUSTOM_EVENTS } from "./../../registry/CUSTOM_EVENTS";
 import Tree from "./Tree";
 
 export default class TreeBranch {
-  constructor(treeSpecies: Tree) {
+  constructor(treeSpecies: Tree, weight: number) {
     this.treeSpecies = treeSpecies;
+    this.weight = weight;
 
-    const dryTimerId = setInterval(this.dry.bind(this), 1000)
+    eventBus.on(CUSTOM_EVENTS.TICK, this.dry.bind(this));
   }
 
   treeSpecies: Tree;
-  weight: number; // kg
-  currentHumidity: number; // percent
+  weight: number; // kg 
+  currentHumidity: number = this.treeSpecies.humidity; // percent
 
   public calculateTimeToBurn(isThereEnoughOxygen: boolean = true) {
     const basicTime =
@@ -26,9 +29,9 @@ export default class TreeBranch {
     return isThereEnoughOxygen ? basicHeat : basicHeat / 2;
   }
 
-  dry () {
-      if (this.currentHumidity > 0.05) {
-        this.currentHumidity -= 0.01
-      }
+  dry() {
+    if (this.currentHumidity > 0.05) {
+      this.currentHumidity -= 0.01;
+    }
   }
 }
