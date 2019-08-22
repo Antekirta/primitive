@@ -1,11 +1,22 @@
-import { eventBus, EventBus } from "./../../utils/event-bus";
+import { eventBus, EventBus, IEventBus } from "./../../utils/event-bus";
 import { CUSTOM_EVENTS } from "./../../registry/CUSTOM_EVENTS";
 import Tree from "./Tree";
 
-export default class TreeBranch extends EventBus {
+export const enum TREE_BRANCH_EVENTS {
+  PRODUCE_HEAT = "produce-heat",
+  DESTROYED = "destroyed"
+}
+
+export interface ITreeBranch extends IEventBus {
+  calculateTimeToBurn: () => number;
+  calculateHeatPerTick: () => number;
+  light: () => void;
+}
+
+export default class TreeBranch extends EventBus implements ITreeBranch {
   constructor(treeSpecies: Tree, weight: number) {
-    super()
-    
+    super();
+
     this.treeSpecies = treeSpecies;
     this.weight = weight;
 
@@ -18,7 +29,7 @@ export default class TreeBranch extends EventBus {
   weight: number; // kg
   currentHumidity: number = this.treeSpecies.humidity; // percent
 
-  public calculateTimeToBurn(isThereEnoughOxygen: boolean = true) {
+  public calculateTimeToBurn(isThereEnoughOxygen: boolean = true): number {
     const basicTime =
       (this.weight * (this.treeSpecies.density as number)) /
       this.treeSpecies.burningTemparature;
@@ -26,7 +37,7 @@ export default class TreeBranch extends EventBus {
     return isThereEnoughOxygen ? basicTime : basicTime * 2;
   }
 
-  public calculateHeatPerTick(isThereEnoughOxygen: boolean = true) {
+  public calculateHeatPerTick(isThereEnoughOxygen: boolean = true): number {
     const basicHeat =
       this.treeSpecies.burningTemparature / this.currentHumidity;
 
@@ -34,7 +45,7 @@ export default class TreeBranch extends EventBus {
   }
 
   public light() {
-    
+    eventBus.on(CUSTOM_EVENTS.TICK, this.burn.bind(this));
   }
 
   public isDry() {
@@ -49,9 +60,19 @@ export default class TreeBranch extends EventBus {
     }
   }
 
-  private burn () {
+  private burn() {
     if (this.weight > 0.02) {
-      this.weight -= this.weight * 0.01 
-    }  
+      this.weight -= this.weight * 0.01;
+
+      this.emit(TREE_BRANCH_EVENTS.PRODUCE_HEAT, {
+        heatAmount: this.calculateHeatPerTick()
+      });
+    } else {
+      this.destroy();
+    }
+  }
+
+  private destroy() {
+    this.emit(TREE_BRANCH_EVENTS.DESTROYED);
   }
 }

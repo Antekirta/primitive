@@ -9,7 +9,13 @@ interface IEvents {
   [key: string]: Array<IEventHandler>;
 }
 
-class EventBus {
+export interface IEventBus {
+  on: (eventName: string, handler: Function) => string;
+  emit: (eventName: string, data?: object) => void;
+  off: (id: string) => void;
+}
+
+export class EventBus implements IEventBus {
   private events: IEvents = {};
 
   public on(eventName: string, handler: Function): string {
@@ -42,7 +48,7 @@ class EventBus {
     }
   }
 
-  public off(id: string) {
+  public off(id: string): void {
     Object.values(this.events).map(eventHandlers => {
       eventHandlers = eventHandlers.filter(handler => handler.id !== id);
     });
