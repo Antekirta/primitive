@@ -1,12 +1,13 @@
 import React from "react";
 import "./LocalArea.css";
 import Forest from "../Forest/Forest";
+import Cave from "../Cave/Cave";
 import People, { PeopleFactory } from "../People/People";
 import { GENDER } from "../People/Person/Person";
 
 const members = [
   PeopleFactory.createPerson("Iwar", GENDER.male),
-  PeopleFactory.createPerson("Inga", GENDER.female),
+  PeopleFactory.createPerson("Inga", GENDER.female)
 ];
 
 interface ILocalAreaProps {}
@@ -32,6 +33,8 @@ export default class LocalArea extends React.Component<
 
         <div className="local-area__cell local-area__cave">
           <header className="local-area__cell-header">Пещера</header>
+
+          <Cave />
         </div>
 
         <div className="local-area__cell local-area__cave-surroundings">

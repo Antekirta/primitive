@@ -1,7 +1,7 @@
 import React from "react";
 import "./Person.css";
 import UIButton from "../../ui-kit/ui-button/ui-button";
-import GetWood from "../../../commands/getWood";
+import GetWood from "../../../commands/GetWood";
 import { TREES } from "../../Forest/Tree";
 import { Tool, TOOLS } from "../../Tool/Tool";
 
