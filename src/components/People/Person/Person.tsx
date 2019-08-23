@@ -1,7 +1,9 @@
 import React from "react";
 import "./Person.css";
 import UIButton from "../../ui-kit/ui-button/ui-button";
-import SeekForWood from "../../../commands/SeekForWood";
+import GetWood from "../../../commands/getWood";
+import { TREES } from "../../Forest/Tree";
+import { Tool, TOOLS } from "../../Tool/Tool";
 
 export enum GENDER {
   male = "male",
@@ -28,11 +30,14 @@ export default class Person extends React.Component<PersonProps, PersonState> {
   };
 
   private assignTask(taskName: string) {
-    const seekForWoodCommand = new SeekForWood();
+    const GetWoodCommand = new GetWood();
 
-    seekForWoodCommand.execute("oak", { name: "axe" });
+    GetWoodCommand.execute(
+      TREES.birch,
+      new Tool(TOOLS.BRONZE_AXE, 30, 40, 10)
+    );
 
-    alert(`Tsk ${taskName} has been assigned!`);
+    console.log(`Task ${taskName} has been assigned to ${this.props.name}.`);
   }
 
   render() {

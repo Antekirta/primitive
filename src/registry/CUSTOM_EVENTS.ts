@@ -1,3 +1,3 @@
-export const enum CUSTOM_EVENTS {
+export enum CUSTOM_EVENTS {
     TICK = 'tick'
 }

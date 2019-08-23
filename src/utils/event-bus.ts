@@ -19,19 +19,17 @@ export class EventBus implements IEventBus {
   private events: IEvents = {};
 
   public on(eventName: string, handler: Function): string {
-    let eventHandlers = this.events[eventName];
-
     const id = uniqid();
 
-    if (eventHandlers) {
-      eventHandlers.push({
+    if (this.events[eventName]) {
+      this.events[eventName].push({
         id: id,
         func: handler
       });
     } else {
-      eventHandlers = [];
+      this.events[eventName] = [];
 
-      eventHandlers.push({
+      this.events[eventName].push({
         id: id,
         func: handler
       });
@@ -43,14 +41,16 @@ export class EventBus implements IEventBus {
   public emit(eventName: string, data?: object): void {
     const eventHandlers = this.events[eventName];
 
-    if (eventHandlers) {
-      eventHandlers.forEach(handler => handler.func(data));
+    if (this.events[eventName]) {
+      this.events[eventName].forEach(handler => handler.func(data));
     }
   }
 
   public off(id: string): void {
-    Object.values(this.events).map(eventHandlers => {
-      eventHandlers = eventHandlers.filter(handler => handler.id !== id);
+    Object.keys(this.events).map(eventName => {
+      this.events[eventName] = this.events[eventName].filter(
+        handler => handler.id !== id
+      );
     });
   }
 }

@@ -1,3 +1,7 @@
+import _random from "lodash/random";
+import { Tool, TOOLS } from "./../Tool/Tool";
+import TreeBranch from "./TreeBranch";
+
 export enum TREES {
   birch = "birch",
   beech = "beech",
@@ -14,6 +18,14 @@ export enum TREES {
   pine = "pine",
   appleTree = "appleTree",
   ash = "ash "
+}
+
+export enum TREE_PARTS {
+  BRANCH = "branch",
+  LEAVES = "leaves",
+  TRUNK = "trunk",
+  TWIGS = "twigs",
+  ROOTS = "roots"
 }
 
 class Tree {
@@ -33,6 +45,22 @@ class Tree {
   density: Number = 0;
   burningTemparature: number = 0;
   humidity: number = 0;
+
+  static getTreePart(tree: Tree, treePart: TREE_PARTS, tool: Tool): TreeBranch {
+    let necessaryTools = [];
+
+    if (treePart === TREE_PARTS.BRANCH) {
+      necessaryTools = [TOOLS.STONE_AXE, TOOLS.BRONZE_AXE, TOOLS.STEEL_AXE];
+
+      if (necessaryTools.includes(tool.name)) {
+        return new TreeBranch(tree, _random(1, 30));
+      }
+
+      throw new Error(`You need on of those tools: ${necessaryTools}`);
+    }
+
+    return new TreeBranch(tree, _random(1, 30));
+  }
 
   static getTree(name: TREES) {
     let density = 0,

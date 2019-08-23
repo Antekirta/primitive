@@ -2,7 +2,7 @@ import { eventBus, EventBus, IEventBus } from "./../../utils/event-bus";
 import { CUSTOM_EVENTS } from "./../../registry/CUSTOM_EVENTS";
 import Tree from "./Tree";
 
-export const enum TREE_BRANCH_EVENTS {
+export enum TREE_BRANCH_EVENTS {
   PRODUCE_HEAT = "produce-heat",
   DESTROYED = "destroyed"
 }
@@ -14,32 +14,32 @@ export interface ITreeBranch extends IEventBus {
 }
 
 export default class TreeBranch extends EventBus implements ITreeBranch {
-  constructor(treeSpecies: Tree, weight: number) {
+  constructor(parentTree: Tree, weight: number) {
     super();
 
-    this.treeSpecies = treeSpecies;
+    this.parentTree = parentTree;
     this.weight = weight;
+    this.currentHumidity = this.parentTree.humidity;
 
     this.dryTimerId = eventBus.on(CUSTOM_EVENTS.TICK, this.dry.bind(this));
   }
 
-  dryTimerId: string;
+  private dryTimerId: string;
 
-  treeSpecies: Tree;
+  private parentTree: Tree;
   weight: number; // kg
-  currentHumidity: number = this.treeSpecies.humidity; // percent
+  private currentHumidity: number; // percent
 
   public calculateTimeToBurn(isThereEnoughOxygen: boolean = true): number {
     const basicTime =
-      (this.weight * (this.treeSpecies.density as number)) /
-      this.treeSpecies.burningTemparature;
+      (this.weight * (this.parentTree.density as number)) /
+      this.parentTree.burningTemparature;
 
     return isThereEnoughOxygen ? basicTime : basicTime * 2;
   }
 
   public calculateHeatPerTick(isThereEnoughOxygen: boolean = true): number {
-    const basicHeat =
-      this.treeSpecies.burningTemparature / this.currentHumidity;
+    const basicHeat = Math.round(this.parentTree.burningTemparature / this.currentHumidity);
 
     return isThereEnoughOxygen ? basicHeat : basicHeat / 2;
   }
