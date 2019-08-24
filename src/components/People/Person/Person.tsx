@@ -1,8 +1,11 @@
 import React from "react";
 import "./Person.css";
 import UIButton from "../../ui-kit/ui-button/ui-button";
+import MultiLevelList, {
+  MultiLevelListItem
+} from "../../ui-kit/multi-level-list/multi-level-list";
 import GetWood from "../../../commands/GetWood";
-import { TREES } from "../../Forest/Tree";
+import { TREES, TREE_PARTS } from "../../Forest/Tree";
 import { Tool, TOOLS } from "../../Tool/Tool";
 
 export enum GENDER {
@@ -18,6 +21,7 @@ interface PersonProps {
 
 interface PersonState {
   currentActivity: string; // TODO use enum here
+  commandsList: Array<MultiLevelListItem>;
 }
 
 export default class Person extends React.Component<PersonProps, PersonState> {
@@ -26,18 +30,26 @@ export default class Person extends React.Component<PersonProps, PersonState> {
   }
 
   state = {
-    currentActivity: "Having a rest..."
+    currentActivity: "Having a rest...",
+    commandsList: [
+      {
+        text: "sdf"
+      }
+    ]
   };
 
   private assignTask(taskName: string) {
-    const GetWoodCommand = new GetWood();
-
-    GetWoodCommand.execute(
+    const activity = new GetWood().execute(
       TREES.birch,
+      TREE_PARTS.BRANCH,
       new Tool(TOOLS.BRONZE_AXE, 30, 40, 10)
     );
 
-    console.log(`Task ${taskName} has been assigned to ${this.props.name}.`);
+    console.log("activity:", activity);
+
+    this.setState({
+      currentActivity: activity
+    });
   }
 
   render() {
@@ -56,6 +68,8 @@ export default class Person extends React.Component<PersonProps, PersonState> {
           >
             assign
           </UIButton>
+
+          <MultiLevelList list={this.state.commandsList} />
         </div>
 
         <div className="person__item person__current-activity">

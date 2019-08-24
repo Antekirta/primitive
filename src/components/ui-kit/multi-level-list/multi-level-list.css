@@ -1,0 +1,44 @@
+.multi-level-list {
+    position: relative;
+}
+
+.multi-level-list__list {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    display: none;
+    outline: solid 1px #222;
+    background-color: #eee;
+    list-style-type: none;
+}
+
+.multi-level-list__list--top {
+    position: relative;
+    left: 0;
+    display: block;
+}
+
+.multi-level-list__item {
+    position: relative;
+    min-width: 100px;
+    padding: 2px 5px;
+    border-bottom: solid 1px #222;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.multi-level-list__item:last-child {
+    border: none;
+}
+
+.multi-level-list__item:hover {
+    background-color:#222;
+}
+
+.multi-level-list__item:hover > .multi-level-list__item-content {
+    color:#fff;
+}
+
+.multi-level-list__item:hover > .multi-level-list__list {
+    display: block;
+}
