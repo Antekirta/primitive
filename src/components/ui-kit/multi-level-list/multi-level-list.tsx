@@ -3,7 +3,7 @@ import "./multi-level-list.css";
 
 export interface MultiLevelListItem {
   text: string;
-  handler?: Function;
+  handler?: () => any;
   list?: Array<MultiLevelListItem>;
 }
 
@@ -12,72 +12,28 @@ interface MultiLevelListProps {
 }
 
 const MultiLevelList: React.FC<MultiLevelListProps> = props => {
+  const itemMarkup = (listItem: MultiLevelListItem) => {
+    return (
+      <React.Fragment key={listItem.text}>
+        <li className="multi-level-list__item" onClick={listItem.handler}>
+          <span className="multi-level-list__item-content">
+            {listItem.text}
+          </span>
+
+          <ul className="multi-level-list__list">
+            {listItem.list
+              ? listItem.list.map(listItem => itemMarkup(listItem))
+              : null}
+          </ul>
+        </li>
+      </React.Fragment>
+    );
+  };
+
   return (
     <div className="multi-level-list">
       <ul className="multi-level-list__list multi-level-list__list--top">
-        <li className="multi-level-list__item">
-          <span className="multi-level-list__item-content">Collect wood</span>
-
-          <ul className="multi-level-list__list">
-            <li className="multi-level-list__item">
-              <span className="multi-level-list__item-content">
-                Collect branches
-              </span>
-
-              <ul className="multi-level-list__list">
-                <li className="multi-level-list__item">
-                  <span className="multi-level-list__item-content">
-                    Collect branches
-                  </span>
-                </li>
-              </ul>
-            </li>
-
-            <li className="multi-level-list__item">
-              <span className="multi-level-list__item-content">
-                Collect branches
-              </span>
-            </li>
-
-            <li className="multi-level-list__item">
-              <span className="multi-level-list__item-content">
-                Collect branches
-              </span>
-            </li>
-
-            <li className="multi-level-list__item">
-              <span className="multi-level-list__item-content">
-                Collect branches
-              </span>
-            </li>
-          </ul>
-        </li>
-
-        <li className="multi-level-list__item">
-          <span className="multi-level-list__item-content">Collect stones</span>
-
-          <ul className="multi-level-list__list">
-            <li className="multi-level-list__item">
-              <span className="multi-level-list__item-content">
-                Collect branches
-              </span>
-
-              <ul className="multi-level-list__list">
-                <li className="multi-level-list__item">
-                  <span className="multi-level-list__item-content">
-                    Collect branches
-                  </span>
-                </li>
-              </ul>
-            </li>
-
-            <li className="multi-level-list__item">
-              <span className="multi-level-list__item-content">
-                Collect branches
-              </span>
-            </li>
-          </ul>
-        </li>
+        {props.list.map(listItem => itemMarkup(listItem))}
       </ul>
     </div>
   );

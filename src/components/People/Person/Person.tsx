@@ -33,7 +33,30 @@ export default class Person extends React.Component<PersonProps, PersonState> {
     currentActivity: "Having a rest...",
     commandsList: [
       {
-        text: "sdf"
+        text: "Collect",
+        list: [
+          {
+            text: "Wood",
+            handler: () => {
+              this.assignTask.call(this, "Do stuff");
+            }
+          },
+          {
+            text: "Stones"
+          },
+          {
+            text: "Clay"
+          }
+        ]
+      },
+      {
+        text: "Create"
+      },
+      {
+        text: "Build"
+      },
+      {
+        text: "Repair"
       }
     ]
   };
