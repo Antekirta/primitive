@@ -32,7 +32,7 @@ export const warehouseReducer = (
   action: AnyAction
 ): warehouseStateInterface => {
   switch (action.type) {
-    case WAREHOUSE_ACTIONS_TYPES.ADD_TREE_BRANCH:
+    case WAREHOUSE_ACTIONS_TYPES.ADD_TREE_BRANCH_SUCCESS:
       const branches = state.warehouse.rawMaterials.wood.branch.concat(
         action.payload
       );
