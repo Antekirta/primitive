@@ -9,7 +9,7 @@ export enum TOOLS {
 }
 
 export interface ITool extends IEventBus {
-  toughness: number;
+  toughness: number; // 0 to 100
   sharpness: number; // 0 to 100
   weight: number;
 }

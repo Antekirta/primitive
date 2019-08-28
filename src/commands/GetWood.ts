@@ -12,8 +12,14 @@ export default class GetWood implements ICommand {
 
     const treeBranch = Tree.getTreePart(tree, treePart, tool);
 
-    store.dispatch(addTreeBranch(treeBranch));
+    // How many ticks should pass before success action (in terms of redux) is fired
+    const timeToCollectBranch: number =
+      treeBranch.density / (tool.sharpness + tool.toughness);
 
-    return "Looking for wood"; 
+    console.log("timeToCollectBranch: ", timeToCollectBranch);
+
+    store.dispatch(addTreeBranch(treeBranch, timeToCollectBranch));
+
+    return "Looking for wood";
   }
 }

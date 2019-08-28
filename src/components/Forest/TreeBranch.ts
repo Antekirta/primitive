@@ -30,6 +30,10 @@ export default class TreeBranch extends EventBus implements ITreeBranch {
   weight: number; // kg
   private currentHumidity: number; // percent
 
+  get density () : number {
+    return this.parentTree.density as number
+  }
+
   public calculateTimeToBurn(isThereEnoughOxygen: boolean = true): number {
     const basicTime =
       (this.weight * (this.parentTree.density as number)) /

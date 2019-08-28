@@ -28,6 +28,10 @@ export enum TREE_PARTS {
   ROOTS = "roots"
 }
 
+/**
+ * TODO Properly describe thee characteristics like density and humidity
+ */
+
 class Tree {
   private constructor(
     name: string,
