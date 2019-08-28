@@ -26,43 +26,43 @@ export default class LocalArea extends React.Component<
     return (
       <div className="local-area">
         <div className="local-area__cell local-area__people">
-          <header className="local-area__cell-header">Люди</header>
+          <header className="local-area__cell-header">Tribe</header>
 
           <People people={members} />
         </div>
 
         <div className="local-area__cell local-area__cave">
-          <header className="local-area__cell-header">Пещера</header>
+          <header className="local-area__cell-header">Cave</header>
 
           <Cave />
         </div>
 
         <div className="local-area__cell local-area__cave-surroundings">
           <header className="local-area__cell-header">
-            Окрестности пещеры
+            Cave's surroundings
           </header>
         </div>
 
         <div className="local-area__cell local-area__forest">
-          <header className="local-area__cell-header">Лес</header>
+          <header className="local-area__cell-header">Forest</header>
 
           <Forest />
         </div>
 
         <div className="local-area__cell local-area__meadow">
-          <header className="local-area__cell-header">Луг</header>
+          <header className="local-area__cell-header">Meadow</header>
         </div>
 
         <div className="local-area__cell local-area__river">
-          <header className="local-area__cell-header">Река</header>
+          <header className="local-area__cell-header">River</header>
         </div>
 
         <div className="local-area__cell local-area__mountain">
-          <header className="local-area__cell-header">Горы</header>
+          <header className="local-area__cell-header">Mountains</header>
         </div>
 
         <div className="local-area__cell local-area__events">
-          <header className="local-area__cell-header">События</header>
+          <header className="local-area__cell-header">Events</header>
         </div>
       </div>
     );

@@ -9,6 +9,7 @@ export interface MultiLevelListItem {
 
 interface MultiLevelListProps {
   list: Array<MultiLevelListItem>;
+  className?: string;
 }
 
 const MultiLevelList: React.FC<MultiLevelListProps> = props => {
@@ -31,7 +32,7 @@ const MultiLevelList: React.FC<MultiLevelListProps> = props => {
   };
 
   return (
-    <div className="multi-level-list">
+    <div className={`multi-level-list ${props.className}`}>
       <ul className="multi-level-list__list multi-level-list__list--top">
         {props.list.map(listItem => itemMarkup(listItem))}
       </ul>

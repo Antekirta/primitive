@@ -22,6 +22,7 @@ interface PersonProps {
 interface PersonState {
   currentActivity: string; // TODO use enum here
   commandsList: Array<MultiLevelListItem>;
+  tasksListIsOpen: boolean;
 }
 
 export default class Person extends React.Component<PersonProps, PersonState> {
@@ -31,6 +32,7 @@ export default class Person extends React.Component<PersonProps, PersonState> {
 
   state = {
     currentActivity: "Having a rest...",
+    tasksListIsOpen: false,
     commandsList: [
       {
         text: "Collect",
@@ -38,6 +40,8 @@ export default class Person extends React.Component<PersonProps, PersonState> {
           {
             text: "Wood",
             handler: () => {
+              this.toggleTasksList.call(this);
+
               this.assignTask.call(this, "Do stuff");
             }
           },
@@ -75,6 +79,12 @@ export default class Person extends React.Component<PersonProps, PersonState> {
     });
   }
 
+  private toggleTasksList() {
+    this.setState({
+      tasksListIsOpen: !this.state.tasksListIsOpen
+    });
+  }
+
   render() {
     return (
       <div className="person">
@@ -85,14 +95,17 @@ export default class Person extends React.Component<PersonProps, PersonState> {
         <div className="person__item person__change-activity">
           <UIButton
             className={"person__assign-button"}
-            onClick={() => {
-              this.assignTask.call(this, "Do stuff");
-            }}
+            onClick={this.toggleTasksList.bind(this)}
           >
             assign
           </UIButton>
 
-          <MultiLevelList list={this.state.commandsList} />
+          {this.state.tasksListIsOpen ? (
+            <MultiLevelList
+              className="person__tasks-list"
+              list={this.state.commandsList}
+            />
+          ) : null}
         </div>
 
         <div className="person__item person__current-activity">

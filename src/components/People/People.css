@@ -6,3 +6,8 @@
 .people__item {
     margin-bottom: 5px;
 }
+
+.person .person__tasks-list {
+    position: absolute;
+    z-index: 1;
+}
