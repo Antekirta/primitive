@@ -1,0 +1,9 @@
+.folding-panel {
+    position: relative;
+}
+
+.folding-panel__content {
+    position: absolute;
+    margin-top: 5px;
+    background-color: #fff;
+}

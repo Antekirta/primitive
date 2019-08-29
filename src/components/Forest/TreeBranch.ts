@@ -30,8 +30,12 @@ export default class TreeBranch extends EventBus implements ITreeBranch {
   weight: number; // kg
   private currentHumidity: number; // percent
 
-  get density () : number {
-    return this.parentTree.density as number
+  get density(): number {
+    return this.parentTree.density as number;
+  }
+
+  get treeSpecies() {
+    return this.parentTree.name;
   }
 
   public calculateTimeToBurn(isThereEnoughOxygen: boolean = true): number {
@@ -43,7 +47,9 @@ export default class TreeBranch extends EventBus implements ITreeBranch {
   }
 
   public calculateHeatPerTick(isThereEnoughOxygen: boolean = true): number {
-    const basicHeat = Math.round(this.parentTree.burningTemparature / this.currentHumidity);
+    const basicHeat = Math.round(
+      this.parentTree.burningTemparature / this.currentHumidity
+    );
 
     return isThereEnoughOxygen ? basicHeat : basicHeat / 2;
   }
