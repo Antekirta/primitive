@@ -26,10 +26,6 @@ interface PersonState {
 }
 
 export default class Person extends React.Component<PersonProps, PersonState> {
-  constructor(props: PersonProps) {
-    super(props);
-  }
-
   state = {
     currentActivity: "Having a rest...",
     tasksListIsOpen: false,

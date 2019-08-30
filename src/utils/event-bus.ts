@@ -39,15 +39,13 @@ export class EventBus implements IEventBus {
   }
 
   public emit(eventName: string, data?: object): void {
-    const eventHandlers = this.events[eventName];
-
     if (this.events[eventName]) {
       this.events[eventName].forEach(handler => handler.func(data));
     }
   }
 
   public off(id: string): void {
-    Object.keys(this.events).map(eventName => {
+    Object.keys(this.events).forEach(eventName => {
       this.events[eventName] = this.events[eventName].filter(
         handler => handler.id !== id
       );

@@ -5,10 +5,10 @@ import { CUSTOM_EVENTS } from "../registry/CUSTOM_EVENTS";
 let tickInterval = window.tick || 1000;
 
 export const startTimer = () => {
-  let timerId = setTimeout(function tick() {
+  setTimeout(function tick() {
     eventBus.emit(CUSTOM_EVENTS.TICK);
 
-    timerId = setTimeout(tick, tickInterval); // (*)
+    setTimeout(tick, tickInterval); // (*)
   }, tickInterval);
 };
 

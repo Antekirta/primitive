@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  Props,
-  ReactChildren,
-  ReactPropTypes,
-  ReactNode
-} from "react";
+import React, { useState, ReactNode } from "react";
 import "./folding-panel.css";
 import UIButton from "../ui-button/ui-button";
 

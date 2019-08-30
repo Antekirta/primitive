@@ -1,6 +1,5 @@
 import { WAREHOUSE_ACTIONS_TYPES } from "./../actions/warehouse/warehouseActionsTypes";
 import { AnyAction } from "redux";
-import { Action } from "redux";
 import { warehouseStateInterface } from "./warehouseReducer";
 import { TREE_PARTS } from "../components/Forest/Tree";
 import TreeBranch from "../components/Forest/TreeBranch";

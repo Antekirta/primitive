@@ -3,7 +3,6 @@ import { WAREHOUSE_ACTIONS_TYPES } from "./warehouseActionsTypes";
 import TreeBranch from "../../components/Forest/TreeBranch";
 import { AnyAction } from "redux";
 import { Dispatch } from "react";
-import { ThunkAction } from "redux-thunk";
 
 /**
  * should return ThunkAction
