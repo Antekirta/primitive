@@ -1,11 +1,11 @@
-import { addTreeBranch } from "./../actions/wood-actions";
+import { addTreeBranch } from "../actions/wood-actions";
 import { Tool } from "../components/Tool/Tool";
 import { ICommand } from "./Command";
 import ForestFactory from "../components/Forest/ForestFactory";
 import Tree, { TREES, TREE_PARTS } from "../components/Forest/Tree";
 import { store } from "../index";
 
-export default class GetWood implements ICommand {
+class GetWood implements ICommand {
   execute(treeSpecies: TREES, treePart: TREE_PARTS, tool: Tool): string {
     const tree = ForestFactory.provideTree(treeSpecies);
 
@@ -20,3 +20,5 @@ export default class GetWood implements ICommand {
     return "Looking for wood";
   }
 }
+
+export { GetWood };

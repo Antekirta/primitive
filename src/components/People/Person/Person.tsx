@@ -4,7 +4,7 @@ import UIButton from "../../ui-kit/ui-button/ui-button";
 import MultiLevelList, {
   MultiLevelListItem
 } from "../../ui-kit/multi-level-list/multi-level-list";
-import GetWood from "../../../commands/GetWood";
+import { GetWood } from "../../../commands/wood-commands";
 import { TREES, TREE_PARTS } from "../../Forest/Tree";
 import { Tool, TOOLS } from "../../Tool/Tool";
 
