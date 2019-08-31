@@ -40,6 +40,8 @@ export const WoodStorage = (props: IWoodStorageProps) => {
 
                     if (someWood) {
                       const pieceOfWood = someWood[0];
+                      
+                      console.log('someWood: ', someWood)
 
                       if (pieceOfWood && pieceOfWood.treeSpecies === tree) {
                         return <td key={treePart}>{wood[treePart].length}</td>;

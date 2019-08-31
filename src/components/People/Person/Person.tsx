@@ -35,11 +35,24 @@ export default class Person extends React.Component<PersonProps, PersonState> {
         list: [
           {
             text: "Wood",
-            handler: () => {
-              this.toggleTasksList.call(this);
+            list: Object.values(TREE_PARTS).map((treePart: TREE_PARTS) => {
+              return {
+                text: treePart,
+                list: Object.values(TREES).map((treeSpecies: TREES) => {
+                  return {
+                    text: treeSpecies,
+                    handler: () => {
+                      this.toggleTasksList.call(this);
 
-              this.assignTask.call(this, "Do stuff");
-            }
+                      this.assignTask.call(this, () => {
+                        console.log('assignTask treeSpecies: ', treeSpecies)
+                        new GetWood().execute(treeSpecies, treePart, this.tool);
+                      });
+                    }
+                  };
+                })
+              };
+            })
           },
           {
             text: "Stones"
@@ -61,18 +74,20 @@ export default class Person extends React.Component<PersonProps, PersonState> {
     ]
   };
 
-  private assignTask(taskName: string) {
-    const activity = new GetWood().execute(
-      TREES.birch,
-      TREE_PARTS.BRANCH,
-      new Tool(TOOLS.BRONZE_AXE, 30, 40, 10)
-    );
+  get tool() {
+    return new Tool(TOOLS.BRONZE_AXE, 30, 40, 10);
+  }
 
-    console.log("activity:", activity);
+  private assignTask(cb: Function) {
+    this.toggleTasksList.call(this);
 
-    this.setState({
-      currentActivity: activity
-    });
+    cb();
+
+    // console.log("activity:", activity);
+
+    // this.setState({
+    //   currentActivity: activity
+    // });
   }
 
   private toggleTasksList() {
