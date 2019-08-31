@@ -15,8 +15,6 @@ export default class GetWood implements ICommand {
     const timeToCollectBranch: number =
       treeBranch.density / (tool.sharpness + tool.toughness);
 
-    console.log("timeToCollectBranch: ", timeToCollectBranch);
-
     store.dispatch(addTreeBranch(treeBranch, timeToCollectBranch));
 
     return "Looking for wood";
