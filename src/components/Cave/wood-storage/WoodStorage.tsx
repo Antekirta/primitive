@@ -36,19 +36,13 @@ export const WoodStorage = (props: IWoodStorageProps) => {
                 <tr key={tree}>
                   <td> {tree} </td>
                   {Object.values(TREE_PARTS).map((treePart: TREE_PARTS) => {
-                    const someWood = wood[treePart];
+                    const treeParts = wood[treePart] || [];
 
-                    if (someWood) {
-                      const pieceOfWood = someWood[0];
-                      
-                      console.log('someWood: ', someWood)
+                    let thisCellWood = treeParts.filter(pieceOfWood => {
+                      return pieceOfWood.treeSpecies === tree;
+                    });
 
-                      if (pieceOfWood && pieceOfWood.treeSpecies === tree) {
-                        return <td key={treePart}>{wood[treePart].length}</td>;
-                      }
-                    }
-
-                    return <td key={treePart}>0</td>;
+                    return <td key={treePart}>{thisCellWood.length}</td>;
                   })}
                 </tr>
               );

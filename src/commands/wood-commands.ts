@@ -17,7 +17,7 @@ class GetWood implements ICommand {
 
     store.dispatch(addTreeBranch(treeBranch, timeToCollectBranch));
 
-    return "Looking for wood";
+    return `Looking for a ${treePart} of ${treeSpecies}`;
   }
 }
 

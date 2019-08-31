@@ -42,11 +42,12 @@ export default class Person extends React.Component<PersonProps, PersonState> {
                   return {
                     text: treeSpecies,
                     handler: () => {
-                      this.toggleTasksList.call(this);
-
                       this.assignTask.call(this, () => {
-                        console.log('assignTask treeSpecies: ', treeSpecies)
-                        new GetWood().execute(treeSpecies, treePart, this.tool);
+                        return new GetWood().execute(
+                          treeSpecies,
+                          treePart,
+                          this.tool
+                        );
                       });
                     }
                   };
@@ -78,16 +79,14 @@ export default class Person extends React.Component<PersonProps, PersonState> {
     return new Tool(TOOLS.BRONZE_AXE, 30, 40, 10);
   }
 
-  private assignTask(cb: Function) {
+  private assignTask(command: () => string) {
     this.toggleTasksList.call(this);
 
-    cb();
+    const activity = command();
 
-    // console.log("activity:", activity);
-
-    // this.setState({
-    //   currentActivity: activity
-    // });
+    this.setState({
+      currentActivity: activity
+    });
   }
 
   private toggleTasksList() {
