@@ -1,7 +1,7 @@
 import React from "react";
 import "./Cave.css";
 import { connect } from "react-redux";
-import { warehouseStateInterface } from "../../reducers/warehouseReducer";
+import { IWoodReducerState } from "../../reducers/wood-reducer";
 import { WoodStorage } from "./wood-storage/WoodStorage";
 
 class Cave extends React.Component {
@@ -9,9 +9,7 @@ class Cave extends React.Component {
     // @ts-ignore
     console.log("Cave props:", this.props);
 
-    const props = this.props as warehouseStateInterface;
-
-    const { rawMaterials } = props.warehouse;
+    const props = this.props as IWoodReducerState;
 
     return (
       <div className="cave">
@@ -21,16 +19,10 @@ class Cave extends React.Component {
           <section className="warehouse__section">
             <header className="warehouse__header">Raw materials</header>
 
-            <WoodStorage className="storage warehouse__storage" wood={rawMaterials.wood} />
-
-            {/* <ul className="warehouse__list">
-              <li className="warehouse__item">
-                <span className="warehouse__item-label">Wood</span>
-                <span className="warehouse__item-value">
-                  {rawMaterials.wood.branch.length}
-                </span>
-              </li>
-            </ul> */}
+            <WoodStorage
+              className="storage warehouse__storage"
+              wood={props.wood}
+            />
           </section>
         </div>
       </div>
@@ -39,11 +31,11 @@ class Cave extends React.Component {
 }
 
 type CaveStore = {
-  warehouse: warehouseStateInterface;
+  woodStore: IWoodReducerState;
 };
 
 const mapStateToProps = (store: CaveStore) => {
-  return { ...store.warehouse };
+  return { ...store.woodStore };
 };
 
 export default connect(mapStateToProps)(Cave);

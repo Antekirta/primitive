@@ -1,4 +1,4 @@
-import { addTreeBranch } from "./../actions/warehouse/raw-materials-actions";
+import { addTreeBranch } from "./../actions/wood-actions";
 import { Tool } from "../components/Tool/Tool";
 import { ICommand } from "./Command";
 import ForestFactory from "../components/Forest/ForestFactory";
