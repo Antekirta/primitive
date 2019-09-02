@@ -1,5 +1,5 @@
-import { delayForNTicks } from "../utils/timer";
-import TreeBranch from "../components/Forest/TreeBranch";
+import { delayForNTicks } from "../../utils/timer";
+import TreeBranch from "../../components/Forest/tree/tree-parts/TreeBranch";
 import { AnyAction } from "redux";
 import { Dispatch } from "react";
 

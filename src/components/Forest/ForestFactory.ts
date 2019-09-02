@@ -1,4 +1,4 @@
-import Tree, { TREES } from "./Tree";
+import Tree, { TREES } from "./tree/Tree";
 
 class ForestFactory {
   static provideTree(treeSpecies: TREES) {

@@ -1,12 +1,13 @@
-import React, { Dispatch } from "react";
+import React from "react";
 import "./Person.css";
 import UIButton from "../../ui-kit/ui-button/ui-button";
 import MultiLevelList, {
   MultiLevelListItem
 } from "../../ui-kit/multi-level-list/multi-level-list";
 import { GetWood } from "../../../commands/wood-commands";
-import { TREES, TREE_PARTS } from "../../Forest/Tree";
+import { TREES, TREE_PARTS } from "../../Forest/tree/Tree";
 import { Tool, TOOLS } from "../../Tool/Tool";
+import Activity from "../../../helpers//Activity";
 
 export enum GENDER {
   male = "male",
@@ -21,7 +22,7 @@ export interface iPerson {
   id: string;
   name: string;
   gender: GENDER;
-  currentOccupation: iOccupation;
+  currentOccupation: Activity;
 }
 
 interface PersonState {
@@ -79,7 +80,7 @@ export default class Person extends React.Component<iPerson, PersonState> {
   };
 
   get tool() {
-    return new Tool(TOOLS.BRONZE_AXE, 30, 40, 10);
+    return new Tool(TOOLS.STEEL_AXE, 30, 40, 10);
   }
 
   private assignTask(command: () => void) {

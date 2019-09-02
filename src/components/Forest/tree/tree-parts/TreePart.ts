@@ -1,6 +1,6 @@
-import { eventBus, EventBus, IEventBus } from "./../../utils/event-bus";
-import { CUSTOM_EVENTS } from "./../../registry/CUSTOM_EVENTS";
-import Tree from "./Tree";
+import { eventBus, EventBus, IEventBus } from "../../../../utils/event-bus";
+import { CUSTOM_EVENTS } from "../../../../registry/CUSTOM_EVENTS";
+import Tree from "../Tree";
 
 enum TREE_PART_EVENTS {
   PRODUCE_HEAT = "produce-heat",

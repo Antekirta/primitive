@@ -3,8 +3,8 @@ import uniqid from "uniqid";
 import "./People.css";
 import Person, { iPerson } from "./Person/Person";
 import { store } from "../../store/configureStore";
-import { addPerson } from "../../actions/people-actions";
-import { iPeopleReducerState } from "../../reducers/people-reducer";
+import { addPerson } from "../../store/actions/people-actions";
+import { iPeopleReducerState } from "../../store/reducers/people-reducer";
 import { connect } from "react-redux";
 
 class People extends React.Component {

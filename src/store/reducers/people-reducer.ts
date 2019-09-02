@@ -1,7 +1,6 @@
-import _find from "lodash/find";
-import { PEOPLE_ACTIONS } from "./../actions/people-actions";
+import { PEOPLE_ACTIONS } from "../actions/people-actions";
 import { AnyAction } from "redux";
-import { iPerson } from "../components/People/Person/Person";
+import { iPerson } from "../../components/People/Person/Person";
 
 export interface iPeopleReducerState {
   people: Array<iPerson>;

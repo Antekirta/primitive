@@ -1,14 +1,11 @@
 import React from "react";
 import "./Cave.css";
 import { connect } from "react-redux";
-import { IWoodReducerState } from "../../reducers/wood-reducer";
+import { IWoodReducerState } from "../../store/reducers/wood-reducer";
 import { WoodStorage } from "./wood-storage/WoodStorage";
 
 class Cave extends React.Component {
   render() {
-    // @ts-ignore
-    console.log("Cave props:", this.props);
-
     const props = this.props as IWoodReducerState;
 
     return (
@@ -31,7 +28,7 @@ class Cave extends React.Component {
 }
 
 type CaveStore = {
-  woodStore: IWoodReducerState
+  woodStore: IWoodReducerState;
 };
 
 const mapStateToProps = (store: CaveStore) => {

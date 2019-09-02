@@ -1,7 +1,8 @@
 import _random from "lodash/random";
-import { Tool, TOOLS } from "./../Tool/Tool";
-import TreeBranch from "./TreeBranch";
-import TreePart from "./TreePart";
+import { Tool, TOOLS } from "../../Tool/Tool";
+import TreeBranch from "./tree-parts/TreeBranch";
+import TreeTrunk from "./tree-parts/TreeTrunk";
+import TreePart from "./tree-parts/TreePart";
 
 export enum TREES {
   birch = "birch",
@@ -30,7 +31,7 @@ export enum TREE_PARTS {
 }
 
 const treePartsClassMap: { [key in TREE_PARTS]: typeof TreePart } = {
-  [TREE_PARTS.TRUNK]: TreeBranch,
+  [TREE_PARTS.TRUNK]: TreeTrunk,
   [TREE_PARTS.BRANCH]: TreeBranch,
   [TREE_PARTS.ROOTS]: TreeBranch,
   [TREE_PARTS.TWIGS]: TreeBranch,
@@ -60,6 +61,8 @@ class Tree {
   humidity: number = 0;
 
   static getTreePart(tree: Tree, treePart: TREE_PARTS, tool: Tool): TreeBranch {
+    console.log('treePart: ', treePart)
+
     let suitableTools: Array<TOOLS> = [];
 
     if (toolIsSuitable()) {

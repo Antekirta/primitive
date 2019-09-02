@@ -1,6 +1,6 @@
 import React from "react";
-import { TREES, TREE_PARTS } from "../../Forest/Tree";
-import TreeBranch from "../../Forest/TreeBranch";
+import { TREES, TREE_PARTS } from "../../Forest/tree/Tree";
+import TreeBranch from "../../Forest/tree/tree-parts/TreeBranch";
 import { FoldingPanel } from "../../ui-kit/folding-panel/folding-panel";
 
 export interface IWoodStorageProps {

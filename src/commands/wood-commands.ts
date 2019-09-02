@@ -1,11 +1,11 @@
-import { iPerson } from "./../components/People/Person/Person";
-import { setPersonOccupation } from "./../actions/people-actions";
-import { addTreeBranch } from "../actions/wood-actions";
+import { setPersonOccupation } from "../store/actions/people-actions";
+import { addTreeBranch } from "../store/actions/wood-actions";
 import { Tool } from "../components/Tool/Tool";
 import { ICommand } from "./Command";
 import ForestFactory from "../components/Forest/ForestFactory";
-import Tree, { TREES, TREE_PARTS } from "../components/Forest/Tree";
+import Tree, { TREES, TREE_PARTS } from "../components/Forest/tree/Tree";
 import { store } from "../index";
+import Activity from "../helpers/Activity";
 
 interface iGetWoodParams {
   treeSpecies: TREES;
@@ -28,9 +28,9 @@ class GetWood implements ICommand {
     store.dispatch(
       setPersonOccupation(
         personId,
-        {
-          title: `Looking for a ${params.treePart} of ${params.treeSpecies}`
-        },
+        new Activity(
+          `Looking for a ${params.treePart} of ${params.treeSpecies}`
+        ),
         timeToCollectBranch
       )
     );
