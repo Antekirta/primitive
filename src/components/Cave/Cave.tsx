@@ -31,7 +31,7 @@ class Cave extends React.Component {
 }
 
 type CaveStore = {
-  woodStore: IWoodReducerState;
+  woodStore: IWoodReducerState
 };
 
 const mapStateToProps = (store: CaveStore) => {

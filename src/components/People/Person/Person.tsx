@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import "./Person.css";
 import UIButton from "../../ui-kit/ui-button/ui-button";
 import MultiLevelList, {
@@ -13,21 +13,24 @@ export enum GENDER {
   female = "female"
 }
 
-interface PersonProps {
+export interface iOccupation {
+  title: string;
+}
+
+export interface iPerson {
   id: string;
   name: string;
   gender: GENDER;
+  currentOccupation: iOccupation;
 }
 
 interface PersonState {
-  currentActivity: string; // TODO use enum here
   commandsList: Array<MultiLevelListItem>;
   tasksListIsOpen: boolean;
 }
 
-export default class Person extends React.Component<PersonProps, PersonState> {
+export default class Person extends React.Component<iPerson, PersonState> {
   state = {
-    currentActivity: "Having a rest...",
     tasksListIsOpen: false,
     commandsList: [
       {
@@ -43,11 +46,11 @@ export default class Person extends React.Component<PersonProps, PersonState> {
                     text: treeSpecies,
                     handler: () => {
                       this.assignTask.call(this, () => {
-                        return new GetWood().execute(
+                        new GetWood().execute(this.props.id, {
                           treeSpecies,
                           treePart,
-                          this.tool
-                        );
+                          tool: this.tool
+                        });
                       });
                     }
                   };
@@ -79,14 +82,10 @@ export default class Person extends React.Component<PersonProps, PersonState> {
     return new Tool(TOOLS.BRONZE_AXE, 30, 40, 10);
   }
 
-  private assignTask(command: () => string) {
+  private assignTask(command: () => void) {
     this.toggleTasksList.call(this);
 
-    const activity = command();
-
-    this.setState({
-      currentActivity: activity
-    });
+    command();
   }
 
   private toggleTasksList() {
@@ -119,7 +118,7 @@ export default class Person extends React.Component<PersonProps, PersonState> {
         </div>
 
         <div className="person__item person__current-activity">
-          {this.state.currentActivity}
+          {this.props.currentOccupation.title}
         </div>
       </div>
     );

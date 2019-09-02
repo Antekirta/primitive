@@ -1,21 +1,23 @@
 import React from "react";
-import uniqid from 'uniqid';
-import './People.css'
-import Person, { GENDER } from "./Person/Person";
+import uniqid from "uniqid";
+import "./People.css";
+import Person, { iPerson } from "./Person/Person";
+import { store } from "../../store/configureStore";
+import { addPerson } from "../../actions/people-actions";
+import { iPeopleReducerState } from "../../reducers/people-reducer";
+import { connect } from "react-redux";
 
-interface PeopleProps {
-  people: Array<JSX.Element>;
-}
-
-export default class People extends React.Component<PeopleProps> {
+class People extends React.Component {
   render() {
+    const props = this.props as iPeopleReducerState;
+
     return (
       <div className="people">
         <ul className="people__list">
-          {this.props.people.map(person => {
+          {props.people.map(personParams => {
             return (
-              <li className="people__item" key={person.props.id} >
-                {person}
+              <li className="people__item" key={personParams.id}>
+                <Person {...personParams}></Person>
               </li>
             );
           })}
@@ -25,8 +27,27 @@ export default class People extends React.Component<PeopleProps> {
   }
 }
 
+type PeopleStore = {
+  peopleStore: iPeopleReducerState;
+};
+
+const mapStateToProps = (store: PeopleStore) => {
+  return { ...store.peopleStore };
+};
+
+export default connect(mapStateToProps)(People);
+
 export class PeopleFactory {
-  static createPerson(name: string, gender: GENDER) {
-    return <Person id={uniqid()} name={name} gender={GENDER.male} />;
+  static createPerson(personParams: Omit<iPerson, "id">) {
+    const personId = uniqid();
+
+    store.dispatch(
+      addPerson({
+        ...personParams,
+        id: personId
+      })
+    );
+
+    return <Person id={personId} {...personParams} />;
   }
 }

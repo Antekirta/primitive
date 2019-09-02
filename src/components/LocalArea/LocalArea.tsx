@@ -5,10 +5,13 @@ import Cave from "../Cave/Cave";
 import People, { PeopleFactory } from "../People/People";
 import { GENDER } from "../People/Person/Person";
 
-const members = [
-  PeopleFactory.createPerson("Iwar", GENDER.male),
-  PeopleFactory.createPerson("Inga", GENDER.female)
-];
+PeopleFactory.createPerson({
+  name: "Iwar",
+  gender: GENDER.male,
+  currentOccupation: {
+    title: "Idle"
+  }
+});
 
 interface ILocalAreaProps {}
 
@@ -28,7 +31,7 @@ export default class LocalArea extends React.Component<
         <div className="local-area__cell local-area__people">
           <header className="local-area__cell-header">Tribe</header>
 
-          <People people={members} />
+          <People />
         </div>
 
         <div className="local-area__cell local-area__cave">
