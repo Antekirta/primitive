@@ -1,19 +1,24 @@
 import _random from "lodash/random";
-import { Tool, TOOLS } from "../../Tool/Tool";
+import { Tool } from "../../Tool/Tool";
 import { TREES } from "./registry/TREES";
 import { TREE_PARTS } from "./registry/TREE_PARTS";
-import TreeBranch from "./tree-parts/TreeBranch";
-import TreeTrunk from "./tree-parts/TreeTrunk";
-import TreePart from "./tree-parts/TreePart";
+import {
+  TreeBranch,
+  TreeTrunk,
+  TreeRoots,
+  TreeTwigs,
+  TreeLeaves,
+  TreePart
+} from "./tree-parts";
 
 export { TREES, TREE_PARTS };
 
 const treePartsClassMap: { [key in TREE_PARTS]: typeof TreePart } = {
   [TREE_PARTS.TRUNK]: TreeTrunk,
   [TREE_PARTS.BRANCH]: TreeBranch,
-  [TREE_PARTS.ROOTS]: TreeBranch,
-  [TREE_PARTS.TWIGS]: TreeBranch,
-  [TREE_PARTS.LEAVES]: TreeBranch
+  [TREE_PARTS.ROOTS]: TreeRoots,
+  [TREE_PARTS.TWIGS]: TreeTwigs,
+  [TREE_PARTS.LEAVES]: TreeLeaves
 };
 
 /**
