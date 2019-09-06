@@ -47,11 +47,13 @@ export default class Person extends React.Component<iPerson, PersonState> {
                     text: treeSpecies,
                     handler: () => {
                       this.assignTask.call(this, () => {
-                        new GetWood().execute(this.props.id, {
+                        const getWoodCommand = new GetWood(this.props.id, {
                           treeSpecies,
                           treePart,
                           tool: this.tool
                         });
+
+                        getWoodCommand.execute();
                       });
                     }
                   };

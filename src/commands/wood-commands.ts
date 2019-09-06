@@ -1,11 +1,16 @@
+import { CUSTOM_EVENTS } from "./../registry/CUSTOM_EVENTS";
 import { setPersonOccupation } from "../store/actions/people-actions";
 import { addTreeBranch } from "../store/actions/wood-actions";
 import { Tool } from "../components/Tool/Tool";
 import { ICommand } from "./Command";
 import ForestFactory from "../components/Forest/ForestFactory";
 import Tree, { TREES, TREE_PARTS } from "../components/Forest/tree/Tree";
+import MediatorToolMaterial from "../mediators/tool-material";
 import { store } from "../index";
 import Activity from "../helpers/Activity";
+import { eventBus } from "../utils/event-bus";
+import { delayForNTicks } from "../utils/timer";
+import TreePart from "../components/Forest/tree/tree-parts/TreePart";
 
 interface iGetWoodParams {
   treeSpecies: TREES;
@@ -14,27 +19,65 @@ interface iGetWoodParams {
 }
 
 class GetWood implements ICommand {
-  execute(personId: string, params: iGetWoodParams): void {
-    const tree = ForestFactory.provideTree(params.treeSpecies);
+  constructor(personId: string, params: iGetWoodParams) {
+    this.personId = personId;
+    this.params = params;
 
-    const treeBranch = Tree.getTreePart(tree, params.treePart, params.tool);
+    this.tree = ForestFactory.provideTree(this.params.treeSpecies);
 
-    // How many ticks should pass before success action (in terms of redux) is fired
-    const timeToCollectBranch: number =
-      treeBranch.density / (params.tool.sharpness + params.tool.toughness);
+    this.treeBranch = Tree.getTreePart(
+      this.tree,
+      this.params.treePart,
+      this.params.tool
+    );
 
-    store.dispatch(addTreeBranch(treeBranch, timeToCollectBranch));
+    this.timeToPerformCommand =
+      this.treeBranch.density /
+      (this.params.tool.sharpness + this.params.tool.toughness);
+  }
+
+  personId: string;
+  params: iGetWoodParams;
+
+  private tree: Tree;
+  // How many ticks should pass before success action (in terms of redux) is fired
+  // could be placed in more general class
+  private timeToPerformCommand: number;
+  private treeBranch: TreePart;
+
+  execute(): void {
+    this.damageTool();
+
+    store.dispatch(addTreeBranch(this.treeBranch, this.timeToPerformCommand));
 
     store.dispatch(
       setPersonOccupation(
-        personId,
+        this.personId,
         new Activity(
-          `Looking for a ${params.treePart} of ${params.treeSpecies}`,
+          `Looking for a ${this.params.treePart} of ${this.params.treeSpecies}`,
           true
         ),
-        timeToCollectBranch
+        this.timeToPerformCommand
       )
     );
+  }
+
+  /**
+   * The tool will be damaged at every tick
+   */
+  private damageTool() {
+    const toolWoodMediator = new MediatorToolMaterial(
+      this.params.tool,
+      this.tree
+    );
+
+    const damageId = eventBus.on(CUSTOM_EVENTS.TICK, () => {
+      this.params.tool.damage(toolWoodMediator.calculateDeteriorationPerTick());
+    });
+
+    delayForNTicks(() => {
+      eventBus.off(damageId);
+    }, this.timeToPerformCommand);
   }
 }
 

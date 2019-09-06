@@ -4,7 +4,7 @@ import { Tool } from "./../components/Tool/Tool";
 // add new materials here
 type MaterialType = Tree;
 
-class MediatorToolMaterial {
+export default class MediatorToolMaterial {
   constructor(tool: Tool, material: MaterialType) {
     this.tool = tool;
     this.material = material;
@@ -13,12 +13,11 @@ class MediatorToolMaterial {
   private tool: Tool;
   private material: MaterialType;
 
-  public calculateDeteriorationPerTick() {
+  public calculateDeteriorationPerTick() : number {
     const k = 1; // some misterious coefficient for today
 
-    const damage =
-      (this.material.density / (this.tool.toughness * this.tool.sharpness)) * k;
-
-    this.tool.damage(damage);
+    return (
+      (this.material.density / (this.tool.toughness * this.tool.sharpness)) * k
+    );
   }
 }

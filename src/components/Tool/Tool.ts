@@ -66,6 +66,7 @@ export class Tool extends EventBus implements ITool {
 
   public damage(damage: number): void {
     this._condition -= damage;
+    this.sharpness -= damage;
 
     if (
       Math.random() < TOOL_CONDITION[this.conditionStatus].toleratedCondition
