@@ -56,7 +56,7 @@ class Tree {
   }
 
   name: string = "";
-  density: Number = 0;
+  density: number = 0;
   burningTemparature: number = 0;
   humidity: number = 0;
 
