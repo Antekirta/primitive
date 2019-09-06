@@ -2,6 +2,7 @@ import { WOOD_ACTIONS } from "../actions/wood-actions";
 import { AnyAction } from "redux";
 import { TREE_PARTS } from "../../components/Forest/tree/Tree";
 import TreeBranch from "../../components/Forest/tree/tree-parts/TreeBranch";
+import TreePart from "../../components/Forest/tree/tree-parts/TreePart";
 
 export interface IWoodReducerState {
   wood: {
@@ -22,13 +23,15 @@ const initialState: IWoodReducerState = {
 export const woodReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case WOOD_ACTIONS.ADD_TREE_BRANCH_SUCCESS:
-      const branches = state.wood.branch.concat(action.payload);
+      const treePart = action.payload as TreePart;
 
-      return Object.assign({}, state, {
-        wood: {
-          [TREE_PARTS.BRANCH]: branches
-        }
-      } as IWoodReducerState);
+      const treeParts = state.wood[treePart.treePartGetter].concat(treePart);
+
+      const wood = Object.assign({}, state.wood, {
+        [treePart.treePartGetter]: treeParts
+      });
+
+      return Object.assign({}, state, { wood } as IWoodReducerState);
     default:
       return state;
   }

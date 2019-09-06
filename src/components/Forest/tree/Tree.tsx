@@ -66,7 +66,7 @@ class Tree {
     let suitableTools: Array<TOOLS> = [];
 
     if (toolIsSuitable()) {
-      return new treePartsClassMap[treePart](tree, _random(10, 30));
+      return new treePartsClassMap[treePart](treePart, tree, _random(10, 30));
     }
 
     throw new Error(`You need on of those tools: ${suitableTools}`);

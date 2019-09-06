@@ -1,3 +1,4 @@
+import { TREE_PARTS } from './../Tree';
 import { eventBus, EventBus, IEventBus } from "../../../../utils/event-bus";
 import { CUSTOM_EVENTS } from "../../../../registry/CUSTOM_EVENTS";
 import Tree from "../Tree";
@@ -14,21 +15,28 @@ export interface ITreePart extends IEventBus {
 }
 
 export default class TreePart extends EventBus implements ITreePart {
-  constructor(parentTree: Tree, weight: number) {
+  constructor(treePart: TREE_PARTS, parentTree: Tree, weight: number) {
     super();
 
+    this.treePart = treePart
     this.parentTree = parentTree;
     this.weight = weight;
     this.currentHumidity = this.parentTree.humidity;
 
     this.dryTimerId = eventBus.on(CUSTOM_EVENTS.TICK, this.dry.bind(this));
   }
+  
+  private treePart : TREE_PARTS
 
   private dryTimerId: string;
 
   private parentTree: Tree;
   weight: number; // kg
   private currentHumidity: number; // percent
+
+  get treePartGetter () {
+    return this.treePart
+  }
 
   get density(): number {
     return this.parentTree.density as number;
