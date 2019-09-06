@@ -1,0 +1,23 @@
+.ui-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
+
+.ui-modal--open {
+    display: flex;
+}
+
+.ui-modal__content {
+    padding: 15px;
+    border: solid 3px #222;
+    min-width: 200px;
+    min-height: 300px;
+    text-align: center;
+}

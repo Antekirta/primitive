@@ -2,6 +2,7 @@ import React from "react";
 import uniqid from "uniqid";
 import "./People.css";
 import Person, { iPerson } from "./Person/Person";
+import { UIModal } from "../ui-kit/ui-modal/ui-modal";
 import { store } from "../../store/configureStore";
 import { addPerson } from "../../store/actions/people-actions";
 import { iPeopleReducerState } from "../../store/reducers/people-reducer";
