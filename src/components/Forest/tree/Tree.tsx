@@ -1,34 +1,12 @@
 import _random from "lodash/random";
 import { Tool, TOOLS } from "../../Tool/Tool";
+import { TREES } from "./registry/TREES";
+import { TREE_PARTS } from "./registry/TREE_PARTS";
 import TreeBranch from "./tree-parts/TreeBranch";
 import TreeTrunk from "./tree-parts/TreeTrunk";
 import TreePart from "./tree-parts/TreePart";
 
-export enum TREES {
-  birch = "birch",
-  beech = "beech",
-  elm = "elm",
-  pearTree = "pearTree",
-  oak = "oak",
-  spruce = "spruce",
-  willow = "willow",
-  chestnut = "chestnut",
-  maple = "maple",
-  linden = "linden",
-  hazel = "hazel",
-  lilac = "lilac",
-  pine = "pine",
-  appleTree = "appleTree",
-  ash = "ash "
-}
-
-export enum TREE_PARTS {
-  TRUNK = "trunk",
-  BRANCH = "branch",
-  ROOTS = "roots",
-  TWIGS = "twigs",
-  LEAVES = "leaves"
-}
+export { TREES, TREE_PARTS };
 
 const treePartsClassMap: { [key in TREE_PARTS]: typeof TreePart } = {
   [TREE_PARTS.TRUNK]: TreeTrunk,
@@ -61,36 +39,7 @@ class Tree {
   humidity: number = 0;
 
   static getTreePart(tree: Tree, treePart: TREE_PARTS, tool: Tool): TreeBranch {
-    console.log('treePart: ', treePart)
-
-    let suitableTools: Array<TOOLS> = [];
-
-    if (toolIsSuitable()) {
-      return new treePartsClassMap[treePart](treePart, tree, _random(10, 30));
-    }
-
-    throw new Error(`You need on of those tools: ${suitableTools}`);
-
-    // TODO Refactor this in order to avoid hardcoding tools names in favor of calculationg by formula
-    function toolIsSuitable(): boolean {
-      if (tree.density > 950) {
-        if ([TREE_PARTS.TRUNK].includes(treePart)) {
-          suitableTools = [TOOLS.STEEL_AXE];
-        } else if ([TREE_PARTS.BRANCH, TREE_PARTS.ROOTS].includes(treePart)) {
-          suitableTools = [TOOLS.STONE_AXE, TOOLS.BRONZE_AXE, TOOLS.STEEL_AXE];
-        }
-      } else {
-        if (
-          [TREE_PARTS.TRUNK, TREE_PARTS.BRANCH, TREE_PARTS.ROOTS].includes(
-            treePart
-          )
-        ) {
-          suitableTools = [TOOLS.STONE_AXE, TOOLS.BRONZE_AXE, TOOLS.STEEL_AXE];
-        }
-      }
-
-      return suitableTools.length === 0 || suitableTools.includes(tool.name);
-    }
+    return new treePartsClassMap[treePart](treePart, tree, _random(10, 30));
   }
 
   static getTree(name: TREES) {
