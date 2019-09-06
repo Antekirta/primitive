@@ -1,16 +1,16 @@
-import { CUSTOM_EVENTS } from "./../registry/CUSTOM_EVENTS";
-import { setPersonOccupation } from "../store/actions/people-actions";
-import { addTreeBranch } from "../store/actions/wood-actions";
-import { Tool } from "../components/Tool/Tool";
-import { ICommand } from "./Command";
-import ForestFactory from "../components/Forest/ForestFactory";
-import Tree, { TREES, TREE_PARTS } from "../components/Forest/tree/Tree";
-import MediatorToolMaterial from "../mediators/tool-material";
-import { store } from "../index";
-import Activity from "../helpers/Activity";
-import { eventBus } from "../utils/event-bus";
-import { delayForNTicks } from "../utils/timer";
-import TreePart from "../components/Forest/tree/tree-parts/TreePart";
+import { CUSTOM_EVENTS } from "registry/CUSTOM_EVENTS";
+import { setPersonOccupation } from "store/actions/people-actions";
+import { addTreeBranch } from "store/actions/wood-actions";
+import { Tool } from "components/Tool/Tool";
+import { ICommand } from "commands/Command";
+import ForestFactory from "components/Forest/ForestFactory";
+import Tree, { TREES, TREE_PARTS } from "resources/wood/tree/Tree";
+import MediatorToolMaterial from "mediators/tool-material";
+import { store } from "index";
+import Activity from "helpers/Activity";
+import { eventBus } from "utils/event-bus";
+import { delayForNTicks } from "utils/timer";
+import TreePart from "resources/wood/tree/tree-parts/TreePart";
 
 interface iGetWoodParams {
   treeSpecies: TREES;

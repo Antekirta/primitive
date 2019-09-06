@@ -1,8 +1,8 @@
 import React from "react";
 import "./Cave.css";
 import { connect } from "react-redux";
-import { IWoodReducerState } from "../../store/reducers/wood-reducer";
-import { WoodStorage } from "./wood-storage/WoodStorage";
+import { IWoodReducerState } from "store/reducers/wood-reducer";
+import { WoodStorage } from "components/Cave/wood-storage/WoodStorage";
 
 class Cave extends React.Component {
   render() {

@@ -1,13 +1,13 @@
 import React from "react";
 import "./Person.css";
-import UIButton from "../../ui-kit/ui-button/ui-button";
+import UIButton from "components/ui-kit/ui-button/ui-button";
 import MultiLevelList, {
   MultiLevelListItem
-} from "../../ui-kit/multi-level-list/multi-level-list";
-import { GetWood } from "../../../commands/wood-commands";
-import { TREES, TREE_PARTS } from "../../Forest/tree/Tree";
-import { Tool, TOOLS } from "../../Tool/Tool";
-import Activity from "../../../helpers//Activity";
+} from "components/ui-kit/multi-level-list/multi-level-list";
+import { GetWood } from "commands/wood-commands";
+import { TREES, TREE_PARTS } from "resources/wood/tree/Tree";
+import { Tool, TOOLS } from "components/Tool/Tool";
+import Activity from "helpers/Activity";
 
 export enum GENDER {
   male = "male",
