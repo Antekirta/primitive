@@ -105,6 +105,7 @@ export default class Person extends React.Component<iPerson, PersonState> {
         <div className="person__item person__change-activity">
           <UIButton
             className={"person__assign-button"}
+            disabled={this.props.currentOccupation.isBusy}
             onClick={this.toggleTasksList.bind(this)}
           >
             assign

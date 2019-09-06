@@ -8,6 +8,11 @@
     letter-spacing: 0.05rem;
 }
 
+.ui-button:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
 .ui-button:hover {
     background-color: #222;
     color: #fff;

@@ -29,7 +29,8 @@ class GetWood implements ICommand {
       setPersonOccupation(
         personId,
         new Activity(
-          `Looking for a ${params.treePart} of ${params.treeSpecies}`
+          `Looking for a ${params.treePart} of ${params.treeSpecies}`,
+          true
         ),
         timeToCollectBranch
       )
