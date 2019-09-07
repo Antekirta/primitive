@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`ui-button component Matches the shapshot 1`] = `
-<button
-  className="ui-button undefined"
-/>
-`;
