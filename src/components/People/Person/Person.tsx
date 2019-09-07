@@ -6,7 +6,7 @@ import MultiLevelList, {
 } from "components/ui-kit/multi-level-list/multi-level-list";
 import { GetWood } from "commands/wood-commands";
 import { TREES, TREE_PARTS } from "classes/resources/wood/tree/Tree";
-import { Tool, TOOLS } from "classes/Tool/Tool";
+import { Tool, TOOLS } from "classes/tools/Tool";
 import Activity from "helpers/Activity";
 
 export enum GENDER {

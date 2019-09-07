@@ -1,7 +1,7 @@
 import { CUSTOM_EVENTS } from "registry/CUSTOM_EVENTS";
 import { setPersonOccupation } from "store/actions/people-actions";
 import { addTreeBranch } from "store/actions/wood-actions";
-import { Tool } from "classes/Tool/Tool";
+import { Tool } from "classes/tools/Tool";
 import { ICommand } from "commands/Command";
 import ForestFactory from "components/Forest/ForestFactory";
 import Tree, { TREES, TREE_PARTS } from "classes/resources/wood/tree/Tree";

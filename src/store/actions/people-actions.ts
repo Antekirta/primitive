@@ -1,7 +1,7 @@
-import { delayForNTicks } from "../../utils/timer";
+import { delayForNTicks } from "utils/timer";
 import { AnyAction } from "redux";
 import { Dispatch } from "react";
-import { iPerson, iOccupation } from "../../components/People/Person/Person";
+import { iPerson, iOccupation } from "components/People/Person/Person";
 
 export enum PEOPLE_ACTIONS {
   ADD_PERSON = "ADD_PERSON",

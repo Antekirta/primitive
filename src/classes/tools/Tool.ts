@@ -1,37 +1,18 @@
+import { iTool } from "./interface";
+import { TOOLS } from "./TOOLS";
 import { TOOL_CONDITION } from "./TOOL_CONDITION";
-import { EventBus, IEventBus } from "utils/event-bus";
+import { TOOL_EVENTS } from "./TOOL_EVENTS";
+import { EventBus } from "utils/event-bus";
 
-export { TOOL_CONDITION };
+export { TOOLS, TOOL_CONDITION, TOOL_EVENTS };
 
-export enum TOOL_EVENTS {
-  DESTROY = "DESTROY"
-}
-
-export enum TOOLS {
-  BARE_HANDS = "bare-hands",
-  STONE = "stone",
-  STICK = "stick",
-  STONE_AXE = "stone-axe",
-  BRONZE_AXE = "bronze-axe",
-  STEEL_AXE = "steel-axe",
-  ROPE = "rope"
-}
-
-export interface ITool extends IEventBus {
-  toughness: number; // 0 to 100
-  sharpness: number; // 0 to 100
-  weight: number;
-  conditionStatus: string;
-  damage: (damage: number) => void;
-}
-
-export class Tool extends EventBus implements ITool {
+export class Tool extends EventBus implements iTool {
   constructor(
-    name: TOOLS,
-    toughness: number,
-    sharpness: number,
-    weight: number,
-    _condition: number = 1000
+    public name: TOOLS,
+    public toughness: number,
+    public sharpness: number,
+    public weight: number,
+    private _condition: number = 1000
   ) {
     super();
 
@@ -41,12 +22,6 @@ export class Tool extends EventBus implements ITool {
     this.weight = weight;
     this._condition = _condition;
   }
-
-  name: TOOLS;
-  toughness: number;
-  sharpness: number;
-  weight: number;
-  private _condition: number;
 
   get conditionStatus(): string {
     if (this._condition >= TOOL_CONDITION.EXCELLENT.toleratedCondition) {

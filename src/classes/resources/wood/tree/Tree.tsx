@@ -1,5 +1,5 @@
 import _random from "lodash/random";
-import { Tool } from "classes/Tool/Tool";
+import { Tool } from "classes/tools/Tool";
 import { TREES } from "classes/resources/wood/tree/registry/TREES";
 import { TREE_PARTS } from "classes/resources/wood/tree/registry/TREE_PARTS";
 import {

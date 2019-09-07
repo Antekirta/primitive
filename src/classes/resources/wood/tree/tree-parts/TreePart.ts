@@ -1,6 +1,6 @@
 import { TREE_PARTS } from './../Tree';
-import { eventBus, EventBus, IEventBus } from "../../../../utils/event-bus";
-import { CUSTOM_EVENTS } from "../../../../registry/CUSTOM_EVENTS";
+import { eventBus, EventBus, IEventBus } from "utils/event-bus";
+import { CUSTOM_EVENTS } from "registry/CUSTOM_EVENTS";
 import Tree from "../Tree";
 
 enum TREE_PART_EVENTS {
