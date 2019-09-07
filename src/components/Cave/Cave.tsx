@@ -3,11 +3,16 @@ import "./Cave.css";
 import { connect } from "react-redux";
 import { IWoodReducerState } from "store/reducers/wood-reducer";
 import { WoodStorage } from "components/Cave/wood-storage/WoodStorage";
+import { ToolStorage } from "components/Cave/tool-storage/ToolStorage"
+import { iToolsReducerState } from "store/reducers/tools-reducer";
 
-class Cave extends React.Component {
+interface iProps {
+  wood: IWoodReducerState
+  tools: iToolsReducerState
+}
+
+class Cave extends React.Component<iProps> {
   render() {
-    const props = this.props as IWoodReducerState;
-
     return (
       <div className="cave">
         <div className="warehouse cave__warehouse">
@@ -18,8 +23,12 @@ class Cave extends React.Component {
 
             <WoodStorage
               className="storage warehouse__storage"
-              wood={props.wood}
+              wood={this.props.wood}
             />
+
+            <header className="warehouse__header">Raw materials</header>
+
+            <ToolStorage tools={this.props.tools} ></ToolStorage>
           </section>
         </div>
       </div>
@@ -29,10 +38,11 @@ class Cave extends React.Component {
 
 type CaveStore = {
   woodStore: IWoodReducerState;
+  toolStore: iToolsReducerState;
 };
 
 const mapStateToProps = (store: CaveStore) => {
-  return { ...store.woodStore };
+  return { ...store.woodStore, ...store.toolStore };
 };
 
 export default connect(mapStateToProps)(Cave);
