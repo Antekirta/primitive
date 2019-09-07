@@ -1,7 +1,7 @@
 import _random from "lodash/random";
-import { Tool } from "components/Tool/Tool";
-import { TREES } from "resources/wood/tree/registry/TREES";
-import { TREE_PARTS } from "resources/wood/tree/registry/TREE_PARTS";
+import { Tool } from "classes/Tool/Tool";
+import { TREES } from "classes/resources/wood/tree/registry/TREES";
+import { TREE_PARTS } from "classes/resources/wood/tree/registry/TREE_PARTS";
 import {
   TreeBranch,
   TreeTrunk,
@@ -9,7 +9,7 @@ import {
   TreeTwigs,
   TreeLeaves,
   TreePart
-} from "resources/wood/tree/tree-parts";
+} from "classes/resources/wood/tree/tree-parts";
 
 export { TREES, TREE_PARTS };
 

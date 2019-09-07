@@ -1,7 +1,7 @@
 import { AnyAction } from "redux";
 import { WOOD_ACTIONS } from "store/actions/wood-actions";
-import { TREE_PARTS } from "resources/wood/tree/Tree";
-import {TreePart, TreeBranch} from "resources/wood/tree/tree-parts";
+import { TREE_PARTS } from "classes/resources/wood/tree/Tree";
+import {TreePart, TreeBranch} from "classes/resources/wood/tree/tree-parts";
 
 export interface IWoodReducerState {
   wood: {

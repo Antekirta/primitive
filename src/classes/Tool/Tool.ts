@@ -1,5 +1,5 @@
 import { TOOL_CONDITION } from "./TOOL_CONDITION";
-import { EventBus, IEventBus } from "./../../utils/event-bus";
+import { EventBus, IEventBus } from "utils/event-bus";
 
 export { TOOL_CONDITION };
 

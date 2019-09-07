@@ -1,5 +1,5 @@
-import Tree from "resources/wood/tree/Tree";
-import { Tool } from "components/Tool/Tool";
+import Tree from "classes/resources/wood/tree/Tree";
+import { Tool } from "classes/Tool/Tool";
 
 // add new materials here
 type MaterialType = Tree;

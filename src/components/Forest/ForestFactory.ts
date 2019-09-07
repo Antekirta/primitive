@@ -1,4 +1,4 @@
-import Tree, { TREES } from "resources/wood/tree/Tree";
+import Tree, { TREES } from "classes/resources/wood/tree/Tree";
 
 class ForestFactory {
   static provideTree(treeSpecies: TREES) {

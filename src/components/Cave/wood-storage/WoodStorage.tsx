@@ -1,5 +1,5 @@
-import { TREES, TREE_PARTS } from "resources/wood/tree/Tree";
-import TreeBranch from "resources/wood/tree/tree-parts/TreeBranch";
+import { TREES, TREE_PARTS } from "classes/resources/wood/tree/Tree";
+import TreeBranch from "classes/resources/wood/tree/tree-parts/TreeBranch";
 import { FoldingPanel } from "components/ui-kit/folding-panel/folding-panel";
 import React from "react";
 
