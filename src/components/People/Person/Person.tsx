@@ -82,7 +82,7 @@ export default class Person extends React.Component<iPerson, PersonState> {
   };
 
   get tool() {
-    return new Tool(TOOLS.STEEL_AXE, 30, 40, 10);
+    return new Tool(TOOLS.STONE_AXE, 30, 40, 10);
   }
 
   private assignTask(command: () => void) {
